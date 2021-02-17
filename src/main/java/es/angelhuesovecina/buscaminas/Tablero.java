@@ -10,37 +10,46 @@ import java.util.Random;
 
 public class Tablero {
     int [][] numsTablero;
-    int xMina;
-    int yMina;
+    int numeroMinas;
+    int xMinaPrueba;
+    int yMinaPrueba;
     
     public void generar() {
-        numsTablero = new int[5][5];
-        xMina = getXMinaAleatoria (0, 5);
-        yMina = getYMinaAleatoria (0, 4);
-        numsTablero [xMina][yMina] = 9;
-        this.mostrarPorConsola();  
-        
+        numsTablero = new int[6][6];
+        xMinaPrueba = generarMinasX (1, 5);
+        yMinaPrueba = generarMinasY (1, 5);
+        numsTablero [xMinaPrueba][yMinaPrueba] = 9;
+        this.mostrarPorConsola();    
     }
     
     public void mostrarPorConsola(){
-        for (int y=0; y<5; y++){
-            for(int x=0; x<5; x++){
+        for (int y=0; y<6; y++){
+            for(int x=0; x<6; x++){
                 System.out.print(numsTablero[x][y]+" ");
             }
             System.out.println();
         }  
-        System.out.println("xMina "+ xMina);
-        System.out.println("yMina "+ yMina);
+        System.out.println("xMina "+ xMinaPrueba);
+        System.out.println("yMina "+ yMinaPrueba);
     }
     
-    public int getXMinaAleatoria(int min, int max) {
+    public int generarMinasX(int min, int max){
+        int minasGeneradasX = 0;
         Random xMinaRandom = new Random();
-        xMina = xMinaRandom.nextInt(max-min+1) + 1;
-        return xMina;
+        while (minasGeneradasX != 5){
+          xMinaPrueba = xMinaRandom.nextInt(max-min+1) + 1;
+          minasGeneradasX ++;
+        }
+        return xMinaPrueba;
+        
     }
-    public int getYMinaAleatoria(int min, int max) {
+    public int generarMinasY(int min, int max){
+        int minasGeneradasY = 0;
         Random yMinaRandom = new Random();
-        yMina = yMinaRandom.nextInt(max-min+1) + min;
-        return yMina;
+        while (minasGeneradasY != 5){
+          yMinaPrueba = yMinaRandom.nextInt(max-min+1) + 1;
+          minasGeneradasY ++;
+        }
+        return yMinaPrueba;
     }
 }
