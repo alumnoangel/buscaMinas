@@ -7,13 +7,13 @@ import java.util.Random;
 public class Tablero {
     int [][] minas;
     int numMinasCercanas;
+    int xMina;
+    int yMina;
     
     //Generacion de minas
     public void generarMinas (int minasGeneradas){
         
         minas = new int[8][8];
-        int xMina;
-        int yMina;
         //Bucle para generar minas aleatorias
         for(int i=0; i<minasGeneradas; i++){
             do{
@@ -28,7 +28,14 @@ public class Tablero {
     } 
     
     private void actualizarNumeroMinasCercanas(){
-       
+       for(int y=0; y<8; y++){
+            //Creacion columnas
+            for(int x=0; x<8; x++){
+               if (minas[xMina][yMina] == 9){
+                   
+               }
+            }
+       }
     }
     
     //Generar numero aleatorio
