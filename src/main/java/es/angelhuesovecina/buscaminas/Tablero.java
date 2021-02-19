@@ -3,53 +3,51 @@ package es.angelhuesovecina.buscaminas;
 
 import java.util.Random;
 
-/**
- *
- * @author Angel
- */
 
 public class Tablero {
-    int [][] numsTablero;
-    int numeroMinas;
-    int xMinaPrueba;
-    int yMinaPrueba;
+    int [][] minas;
+    int numMinasCercanas;
     
-    public void generar() {
-        numsTablero = new int[6][6];
-        xMinaPrueba = generarMinasX (1, 5);
-        yMinaPrueba = generarMinasY (1, 5);
-        numsTablero [xMinaPrueba][yMinaPrueba] = 9;
-        this.mostrarPorConsola();    
+    //Generacion de minas
+    public void generarMinas (int minasGeneradas){
+        
+        minas = new int[8][8];
+        int xMina;
+        int yMina;
+        //Bucle para generar minas aleatorias
+        for(int i=0; i<minasGeneradas; i++){
+            do{
+                xMina = getNumeroAleatorio(0,7);
+                yMina = getNumeroAleatorio(0,7);
+                System.out.println("x = " + xMina + "  y= " + yMina);
+                //Bucle para que las minas no se pisen
+            }while (minas[xMina][yMina] != 0); 
+                minas[xMina][yMina] = 9;
+        }  
+        mostrarPorConsola(); 
+    } 
+    
+    private void actualizarNumeroMinasCercanas(){
+       
     }
     
+    //Generar numero aleatorio
+    public int getNumeroAleatorio(int min, int max){
+        Random random = new Random ();
+        int num = random.nextInt(max-min+1) + min;
+        return num;
+     }
+    
+    // Muestra los números
     public void mostrarPorConsola(){
-        for (int y=0; y<6; y++){
-            for(int x=0; x<6; x++){
-                System.out.print(numsTablero[x][y]+" ");
+        //Creacion filas
+        for(int y=0; y<8; y++){
+            //Creacion columnas
+            for(int x=0; x<8; x++){
+                //Mostrar en consola
+                System.out.print(minas [x][y] + " ");
             }
             System.out.println();
-        }  
-        System.out.println("xMina "+ xMinaPrueba);
-        System.out.println("yMina "+ yMinaPrueba);
-    }
-    
-    public int generarMinasX(int min, int max){
-        int minasGeneradasX = 0;
-        Random xMinaRandom = new Random();
-        while (minasGeneradasX != 5){
-          xMinaPrueba = xMinaRandom.nextInt(max-min+1) + 1;
-          minasGeneradasX ++;
         }
-        return xMinaPrueba;
-        
-    }
-    public int generarMinasY(int min, int max){
-        int minasGeneradasY = 0;
-        Random yMinaRandom = new Random();
-        while (minasGeneradasY != 5){
-          yMinaPrueba = yMinaRandom.nextInt(max-min+1) + 1;
-          minasGeneradasY ++;
-        }
-        return yMinaPrueba;
     }
 }

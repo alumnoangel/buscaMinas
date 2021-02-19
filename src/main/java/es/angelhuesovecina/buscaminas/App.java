@@ -19,7 +19,7 @@ public class App extends Application {
         stage.show();
         
         Tablero tablero = new Tablero();
-        tablero.generar();
+        tablero.generarMinas(10);
         
     }
 
