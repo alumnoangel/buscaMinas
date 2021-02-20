@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Tablero {
     int [][] minas;
-    int numMinasCercanas;
+    int numMinasCercanas = 1;
     int xMina;
     int yMina;
     
@@ -17,25 +17,46 @@ public class Tablero {
         //Bucle para generar minas aleatorias
         for(int i=0; i<minasGeneradas; i++){
             do{
-                xMina = getNumeroAleatorio(0,7);
-                yMina = getNumeroAleatorio(0,7);
+                xMina = getNumeroAleatorio(2,6);
+                yMina = getNumeroAleatorio(2,6);
                 System.out.println("x = " + xMina + "  y= " + yMina);
                 //Bucle para que las minas no se pisen
             }while (minas[xMina][yMina] != 0); 
-                minas[xMina][yMina] = 9;
-        }  
+                minas[xMina][yMina] = 9;  
+            generacionDePistas();
+        }
         mostrarPorConsola(); 
     } 
     
-    private void actualizarNumeroMinasCercanas(){
-       for(int y=0; y<8; y++){
-            //Creacion columnas
-            for(int x=0; x<8; x++){
-               if (minas[xMina][yMina] == 9){
-                   
-               }
+    public void generacionDePistas(){
+            if (minas[xMina+1][yMina]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
             }
-       }
+            if (minas[xMina-1][yMina]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
+            }
+            if (minas[xMina][yMina+1]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
+            }
+            if (minas[xMina][yMina-1]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
+            }
+            if (minas[xMina+1][yMina+1]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
+            }
+            if (minas[xMina-1][yMina-1]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
+            }
+            if (minas[xMina-1][yMina+1]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
+            }
+            if (minas[xMina+1][yMina-1]==0){
+                minas[xMina+1][yMina]=numMinasCercanas;
+            }
+    }
+    
+    private void actualizarNumeroMinasCercanas(){
+      
     }
     
     //Generar numero aleatorio
