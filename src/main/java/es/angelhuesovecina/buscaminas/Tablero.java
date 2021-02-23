@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class Tablero {
     int [][] minas;
-    int numPistas;
     int xMina;
     int yMina;
     int filas = 8;
@@ -18,8 +17,8 @@ public class Tablero {
         //Bucle para generar minas aleatorias
         for(int i=0; i<minasGeneradas; i++){
             do{
-                xMina = getNumeroAleatorio(1,6);
-                yMina = getNumeroAleatorio(1,6);
+                xMina = getNumeroAleatorio(0,7);
+                yMina = getNumeroAleatorio(0,7);
                 System.out.println("x = " + xMina + "  y= " + yMina);
                 //Bucle para que las minas no se pisen
             }while (minas[xMina][yMina] == 9); 
@@ -33,30 +32,46 @@ public class Tablero {
    public void actualizarNumeroMinasCercanas(){
         for(int y=0; y<filas; y++){
             for(int x=0; x<columnas; x++){
-                if (minas[x][y]== 9 && minas[x+1][y] != 9){
-                    minas[x+1][y]++;
-                }
-                if (minas[x][y]== 9 && minas[x-1][y] != 9){
-                    minas[x-1][y]++;
-                }
-                if (minas[x][y]== 9 && minas[x+1][y+1] != 9){
-                    minas[x+1][y+1]++;
-                }
-                if (minas[x][y]== 9 && minas[x-1][y-1] != 9){
-                    minas[x-1][y-1]++;
-                }
-                if (minas[x][y]== 9 && minas[x][y+1] != 9){
-                    minas[x][y+1]++;
-                }
-                if (minas[x][y]== 9 && minas[x][y-1] != 9){
-                    minas[x][y-1]++;
-                }
-                if (minas[x][y]== 9 && minas[x+1][y-1] != 9){
-                    minas[x+1][y-1]++;
-                }
-                if (minas[x][y]== 9 && minas[x-1][y+1] != 9){
-                    minas[x-1][y+1]++;
-                }
+                try{
+                    if (minas[x][y]== 9 && minas[x+1][y] != 9){
+                        minas[x+1][y]++;
+                    }
+                }catch (Exception ex) {}
+                try{
+                    if (minas[x][y]== 9 && minas[x-1][y] != 9){
+                        minas[x-1][y]++;
+                    }
+                }catch (Exception ex) {}
+                try{
+                    if (minas[x][y]== 9 && minas[x+1][y+1] != 9){
+                        minas[x+1][y+1]++;
+                    }
+                }catch (Exception ex) {}
+                try{
+                    if (minas[x][y]== 9 && minas[x-1][y-1] != 9){
+                        minas[x-1][y-1]++;
+                    }
+                }catch (Exception ex) {}
+                try{
+                    if (minas[x][y]== 9 && minas[x][y+1] != 9){
+                        minas[x][y+1]++;
+                    }
+                }catch (Exception ex) {}
+                try{
+                    if (minas[x][y]== 9 && minas[x][y-1] != 9){
+                        minas[x][y-1]++;
+                    }
+                }catch (Exception ex) {}
+                try{
+                    if (minas[x][y]== 9 && minas[x+1][y-1] != 9){
+                        minas[x+1][y-1]++;
+                    }
+                }catch (Exception ex) {}
+                try{
+                    if (minas[x][y]== 9 && minas[x-1][y+1] != 9){
+                        minas[x-1][y+1]++;
+                    }
+                }catch (Exception ex) {}
             }
         }
     }
