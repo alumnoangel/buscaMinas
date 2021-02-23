@@ -20,7 +20,6 @@ public class App extends Application {
         
         Tablero tablero = new Tablero();
         tablero.generarMinas(10);
-        
     }
 
     public static void main(String[] args) {

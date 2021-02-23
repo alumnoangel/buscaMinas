@@ -3,17 +3,18 @@ package es.angelhuesovecina.buscaminas;
 
 import java.util.Random;
 
-
 public class Tablero {
     int [][] minas;
-    int numPistas = 1;
+    int numPistas;
     int xMina;
     int yMina;
+    int filas = 8;
+    int columnas = 8;
     
     //Generacion de minas
     public void generarMinas (int minasGeneradas){
         
-        minas = new int[8][8];
+        minas = new int[filas][columnas];
         //Bucle para generar minas aleatorias
         for(int i=0; i<minasGeneradas; i++){
             do{
@@ -23,54 +24,43 @@ public class Tablero {
                 //Bucle para que las minas no se pisen
             }while (minas[xMina][yMina] == 9); 
                 minas[xMina][yMina] = 9;
-            generacionDePistas();
+            //generacionDePistas();
         }
+        actualizarNumeroMinasCercanas();
         mostrarPorConsola(); 
     } 
     
-    public void generacionDePistas(){
-
-            if (minas[xMina+1][yMina]==0){
-                minas[xMina+1][yMina]=numPistas;
-            }
-            if (minas[xMina-1][yMina]==0){
-                minas[xMina-1][yMina]=numPistas;
-            }
-            if (minas[xMina][yMina+1]==0){
-                minas[xMina][yMina+1]=numPistas;
-            }
-            if (minas[xMina][yMina-1]==0){
-                minas[xMina][yMina-1]=numPistas;
-            }
-            if (minas[xMina+1][yMina+1]==0){
-                minas[xMina+1][yMina+1]=numPistas;
-            }
-            if (minas[xMina-1][yMina-1]==0){
-                minas[xMina-1][yMina-1]=numPistas;
-            }
-            if (minas[xMina-1][yMina+1]==0){
-                minas[xMina-1][yMina+1]=numPistas;
-            }
-            if (minas[xMina+1][yMina-1]==0){
-                minas[xMina+1][yMina-1]=numPistas;
-            }
-    }
-    
-   /* public void actualizarNumeroMinasCercanas(){
-        for(int y=0; y<8; y++){
-            for(int x=0; x<8; x++){
-                for(int j = y-1; j<y+1; j++){
-                    for(int l = y-1; l<y+1; l++){
-                        if(minas [x][y] == 9 && minas [j][l] != 9){
-                            numPistas ++;
-                        }
-                    }
+   public void actualizarNumeroMinasCercanas(){
+        for(int y=0; y<filas; y++){
+            for(int x=0; x<columnas; x++){
+                if (minas[x][y]== 9 && minas[x+1][y] != 9){
+                    minas[x+1][y]++;
+                }
+                if (minas[x][y]== 9 && minas[x-1][y] != 9){
+                    minas[x-1][y]++;
+                }
+                if (minas[x][y]== 9 && minas[x+1][y+1] != 9){
+                    minas[x+1][y+1]++;
+                }
+                if (minas[x][y]== 9 && minas[x-1][y-1] != 9){
+                    minas[x-1][y-1]++;
+                }
+                if (minas[x][y]== 9 && minas[x][y+1] != 9){
+                    minas[x][y+1]++;
+                }
+                if (minas[x][y]== 9 && minas[x][y-1] != 9){
+                    minas[x][y-1]++;
+                }
+                if (minas[x][y]== 9 && minas[x+1][y-1] != 9){
+                    minas[x+1][y-1]++;
+                }
+                if (minas[x][y]== 9 && minas[x-1][y+1] != 9){
+                    minas[x-1][y+1]++;
                 }
             }
         }
     }
-*/
-    
+
     //Generar numero aleatorio
     public int getNumeroAleatorio(int min, int max){
         Random random = new Random ();
@@ -81,9 +71,9 @@ public class Tablero {
     // Muestra los números
     public void mostrarPorConsola(){
         //Creacion filas
-        for(int y=0; y<8; y++){
+        for(int y=0; y<filas; y++){
             //Creacion columnas
-            for(int x=0; x<8; x++){
+            for(int x=0; x<columnas; x++){
                 //Mostrar en consola
                 System.out.print(minas [x][y] + " ");
             }
@@ -91,3 +81,5 @@ public class Tablero {
         }
     }
 }
+
+
