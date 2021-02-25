@@ -29,6 +29,7 @@ public class Tablero {
         mostrarPorConsola(); 
     } 
     
+   //Generacion de pistas
    public void actualizarNumeroMinasCercanas(){
         for(int y=0; y<filas; y++){
             for(int x=0; x<columnas; x++){
@@ -95,6 +96,9 @@ public class Tablero {
             System.out.println();
         }
     }
+
 }
+
+    
 
 
