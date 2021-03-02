@@ -9,7 +9,7 @@ public class Tablero {
     int yMina;
     int filas = 8;
     int columnas = 8;
-    
+
     //Generacion de minas
     public void generarMinas (int minasGeneradas){
         
@@ -27,8 +27,8 @@ public class Tablero {
         }
         actualizarNumeroMinasCercanas();
         mostrarPorConsola(); 
-    } 
-    
+    }
+
    //Generacion de pistas
    public void actualizarNumeroMinasCercanas(){
         for(int y=0; y<filas; y++){
@@ -76,7 +76,7 @@ public class Tablero {
             }
         }
     }
-
+   
     //Generar numero aleatorio
     public int getNumeroAleatorio(int min, int max){
         Random random = new Random ();
@@ -96,7 +96,11 @@ public class Tablero {
             System.out.println();
         }
     }
-
+    
+    public int getPosTablero(int posx, int posy) {          
+        return minas[posx][posy];
+    }
+    
 }
 
     

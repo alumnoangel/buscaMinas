@@ -6,9 +6,14 @@ import javafx.scene.layout.GridPane;
 public class TableroView extends GridPane {
     
     public TableroView(Tablero tablero){
-        int num=tablero.minas(0, 0);
-        Label label = new Label(num);
-        this.add(label, 0, 0);    
+        for(int y=0; y<tablero.filas; y++){
+            for(int x=0; x<tablero.filas; x++){
+                int num = tablero.getPosTablero(x, y);
+                String strNum = String.valueOf(num);
+                Label label = new Label(strNum);
+                this.add(label, x, y);
+            }
+        }      
     }
     
 }
