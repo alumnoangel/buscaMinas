@@ -20,6 +20,7 @@ public class TableroView extends GridPane {
                 label.setAlignment(Pos.CENTER);
                 this.add(label, x, y);
                 Rectangle r = new Rectangle();
+                r.setVisible(true);
                 r.setWidth(80);
                 r.setHeight(60);
                 r.setFill(Color.GRAY);
