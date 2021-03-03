@@ -100,7 +100,12 @@ public class Tablero {
     public int getPosTablero(int posx, int posy) {          
         return minas[posx][posy];
     }
-    
+    /*
+    private void controlRaton(TableroView tableroView){
+        
+    }
+    */
+        
 }
 
     

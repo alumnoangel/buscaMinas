@@ -2,6 +2,7 @@ package es.angelhuesovecina.buscaminas;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -29,6 +30,14 @@ public class TableroView extends GridPane {
         }
         this.setMaxWidth(80*9);
         this.setMaxHeight(60*tablero.columnas);
+        this.controlRaton(tablero);
     }
-    
+    private void controlRaton(Tablero tablero) {
+        this.setOnMouseClicked((MouseEvent mouseEvent) -> {
+            int clicColum = (int)(mouseEvent.getX() / 80);
+            int clicFila = (int)(mouseEvent.getY() / 60);
+            int num = tablero.getPosTablero(clicColum, clicFila);
+            System.out.println("Numero: " + num);
+        });
+    }
 }
