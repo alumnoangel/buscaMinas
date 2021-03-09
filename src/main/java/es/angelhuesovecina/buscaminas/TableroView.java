@@ -50,6 +50,32 @@ public class TableroView extends GridPane {
                     if (num == 9){
                         vivo = false;
                     }
+                    if (num == 0){
+                        try{
+                            rectangulos[clicColum + 1][clicFila + 1].setVisible(false);
+                        }catch (Exception ex) {}
+                        try{
+                            rectangulos[clicColum][clicFila + 1].setVisible(false);
+                        }catch (Exception ex) {}
+                        try{
+                            rectangulos[clicColum + 1][clicFila].setVisible(false);
+                        }catch (Exception ex) {}
+                        try{
+                            rectangulos[clicColum - 1][clicFila - 1].setVisible(false);
+                        }catch (Exception ex) {}
+                        try{
+                            rectangulos[clicColum - 1][clicFila].setVisible(false);
+                        }catch (Exception ex) {}
+                        try{
+                            rectangulos[clicColum][clicFila - 1].setVisible(false);
+                        }catch (Exception ex) {}
+                        try{
+                            rectangulos[clicColum + 1][clicFila - 1].setVisible(false);
+                        }catch (Exception ex) {}
+                        try{
+                            rectangulos[clicColum - 1][clicFila + 1].setVisible(false);
+                        }catch (Exception ex) {}
+                    }
                 }
                 
             }); 
