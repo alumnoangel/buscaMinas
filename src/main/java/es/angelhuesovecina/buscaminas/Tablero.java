@@ -2,6 +2,8 @@
 package es.angelhuesovecina.buscaminas;
 
 import java.util.Random;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Tablero {
     int [][] minas;
@@ -9,7 +11,7 @@ public class Tablero {
     int yMina;
     int filas = 8;
     int columnas = 8;
-
+    
     //Generacion de minas
     public void generarMinas (int minasGeneradas){
         
@@ -100,12 +102,6 @@ public class Tablero {
     public int getPosTablero(int posx, int posy) {          
         return minas[posx][posy];
     }
-    /*
-    private void controlRaton(TableroView tableroView){
-        
-    }
-    */
-        
 }
 
     

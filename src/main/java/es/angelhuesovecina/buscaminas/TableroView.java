@@ -9,23 +9,30 @@ import javafx.scene.shape.Rectangle;
 
 public class TableroView extends GridPane {
     
+    Rectangle rec = new Rectangle();
+    
+    Rectangle [][] rectangulos = new Rectangle[8][8];
+    
+    boolean vivo;
+    
+    
     public TableroView(Tablero tablero){
         this.setStyle("-fx-grid-lines-visible: true");
         for(int y=0; y<tablero.filas; y++){
             for(int x=0; x<tablero.filas; x++){
                 int num = tablero.getPosTablero(x, y);
                 String strNum = String.valueOf(num);
-                Label label = new Label(strNum);
-                label.setPrefWidth(80);
-                label.setPrefHeight(60);
-                label.setAlignment(Pos.CENTER);
-                this.add(label, x, y);
-                Rectangle r = new Rectangle();
-                r.setVisible(true);
-                r.setWidth(80);
-                r.setHeight(60);
-                r.setFill(Color.GRAY);
-                this.add(r, x, y);
+                Label numTablero = new Label(strNum);
+                numTablero.setPrefWidth(80);
+                numTablero.setPrefHeight(60);
+                numTablero.setAlignment(Pos.CENTER);
+                this.add(numTablero, x, y);
+                rec = new Rectangle();
+                rectangulos[x][y] = rec;
+                rec.setWidth(80);
+                rec.setHeight(60);
+                rec.setFill(Color.GRAY);
+                this.add(rec, x, y);
             }
         }
         this.setMaxWidth(80*9);
@@ -33,11 +40,23 @@ public class TableroView extends GridPane {
         this.controlRaton(tablero);
     }
     private void controlRaton(Tablero tablero) {
-        this.setOnMouseClicked((MouseEvent mouseEvent) -> {
-            int clicColum = (int)(mouseEvent.getX() / 80);
-            int clicFila = (int)(mouseEvent.getY() / 60);
-            int num = tablero.getPosTablero(clicColum, clicFila);
-            System.out.println("Numero: " + num);
-        });
+        if(vivo = true){
+            this.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                int clicColum = (int)(mouseEvent.getX() / 80);
+                int clicFila = (int)(mouseEvent.getY() / 60);
+                int num = tablero.getPosTablero(clicColum, clicFila);
+                System.out.println("Numero: " + num);
+                rectangulos[clicColum][clicFila].setVisible(false);
+                if (numTablero == 9){
+                    vivo = false;
+                }
+            });
+        }
     }
+    
+    /** public void RecPrueba (){
+        Rectangle rec1 = new Rectangle(80, 60, Color.AQUAMARINE);
+        add
+    }
+    */
 }
