@@ -13,14 +13,14 @@ public class TableroView extends GridPane {
     
     Rectangle [][] rectangulos = new Rectangle[8][8];
     
-    boolean vivo;
-    
+    boolean vivo = true;
+    int num;
     
     public TableroView(Tablero tablero){
         this.setStyle("-fx-grid-lines-visible: true");
         for(int y=0; y<tablero.filas; y++){
             for(int x=0; x<tablero.filas; x++){
-                int num = tablero.getPosTablero(x, y);
+                num = tablero.getPosTablero(x, y);
                 String strNum = String.valueOf(num);
                 Label numTablero = new Label(strNum);
                 numTablero.setPrefWidth(80);
@@ -40,18 +40,19 @@ public class TableroView extends GridPane {
         this.controlRaton(tablero);
     }
     private void controlRaton(Tablero tablero) {
-        if(vivo = true){
             this.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                int clicColum = (int)(mouseEvent.getX() / 80);
-                int clicFila = (int)(mouseEvent.getY() / 60);
-                int num = tablero.getPosTablero(clicColum, clicFila);
-                System.out.println("Numero: " + num);
-                rectangulos[clicColum][clicFila].setVisible(false);
-                if (numTablero == 9){
-                    vivo = false;
+                if(vivo == true){
+                    int clicColum = (int)(mouseEvent.getX() / 80);
+                    int clicFila = (int)(mouseEvent.getY() / 60);
+                    num = tablero.getPosTablero(clicColum, clicFila);
+                    System.out.println("Numero: " + num);
+                    rectangulos[clicColum][clicFila].setVisible(false);
+                    if (num == 9){
+                        vivo = false;
+                    }
                 }
-            });
-        }
+                
+            }); 
     }
     
     /** public void RecPrueba (){
