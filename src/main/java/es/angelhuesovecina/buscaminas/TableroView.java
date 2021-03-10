@@ -14,13 +14,15 @@ public class TableroView extends GridPane {
     Rectangle [][] rectangulos = new Rectangle[8][8];
     
     boolean vivo = true;
-    int num;
+    int clicColum;
+    int clicFila;
+    int numComprobacion;
     
     public TableroView(Tablero tablero){
         this.setStyle("-fx-grid-lines-visible: true");
         for(int y=0; y<tablero.filas; y++){
             for(int x=0; x<tablero.filas; x++){
-                num = tablero.getPosTablero(x, y);
+                int num = tablero.getPosTablero(x, y);
                 String strNum = String.valueOf(num);
                 Label numTablero = new Label(strNum);
                 numTablero.setPrefWidth(80);
@@ -42,48 +44,45 @@ public class TableroView extends GridPane {
     private void controlRaton(Tablero tablero) {
             this.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 if(vivo == true){
-                    int clicColum = (int)(mouseEvent.getX() / 80);
-                    int clicFila = (int)(mouseEvent.getY() / 60);
-                    num = tablero.getPosTablero(clicColum, clicFila);
-                    System.out.println("Numero: " + num);
+                    clicColum = (int)(mouseEvent.getX() / 80);
+                    clicFila = (int)(mouseEvent.getY() / 60);
+                    numComprobacion = tablero.getPosTablero(clicColum, clicFila);
                     rectangulos[clicColum][clicFila].setVisible(false);
-                    if (num == 9){
-                        vivo = false;
-                    }
-                    if (num == 0){
-                        try{
-                            rectangulos[clicColum + 1][clicFila + 1].setVisible(false);
-                        }catch (Exception ex) {}
-                        try{
-                            rectangulos[clicColum][clicFila + 1].setVisible(false);
-                        }catch (Exception ex) {}
-                        try{
-                            rectangulos[clicColum + 1][clicFila].setVisible(false);
-                        }catch (Exception ex) {}
-                        try{
-                            rectangulos[clicColum - 1][clicFila - 1].setVisible(false);
-                        }catch (Exception ex) {}
-                        try{
-                            rectangulos[clicColum - 1][clicFila].setVisible(false);
-                        }catch (Exception ex) {}
-                        try{
-                            rectangulos[clicColum][clicFila - 1].setVisible(false);
-                        }catch (Exception ex) {}
-                        try{
-                            rectangulos[clicColum + 1][clicFila - 1].setVisible(false);
-                        }catch (Exception ex) {}
-                        try{
-                            rectangulos[clicColum - 1][clicFila + 1].setVisible(false);
-                        }catch (Exception ex) {}
-                    }
+                    destapadoCasillas();
                 }
                 
             }); 
     }
     
-    /** public void RecPrueba (){
-        Rectangle rec1 = new Rectangle(80, 60, Color.AQUAMARINE);
-        add
+    private void destapadoCasillas (){
+        if (numComprobacion == 9){
+            vivo = false;
+        }
+        if (numComprobacion == 0){
+            try{
+                rectangulos[clicColum + 1][clicFila + 1].setVisible(false);
+            }catch (Exception ex) {}
+            try{
+                rectangulos[clicColum][clicFila + 1].setVisible(false);
+            }catch (Exception ex) {}
+            try{
+                rectangulos[clicColum + 1][clicFila].setVisible(false);
+            }catch (Exception ex) {}
+            try{
+                rectangulos[clicColum - 1][clicFila - 1].setVisible(false);
+            }catch (Exception ex) {}
+            try{
+                rectangulos[clicColum - 1][clicFila].setVisible(false);
+            }catch (Exception ex) {}
+            try{
+                rectangulos[clicColum][clicFila - 1].setVisible(false);
+            }catch (Exception ex) {}
+            try{
+                rectangulos[clicColum + 1][clicFila - 1].setVisible(false);
+            }catch (Exception ex) {}
+            try{
+                rectangulos[clicColum - 1][clicFila + 1].setVisible(false);
+            }catch (Exception ex) {}
+        }
     }
-    */
 }
