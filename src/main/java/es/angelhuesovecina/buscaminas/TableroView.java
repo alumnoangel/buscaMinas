@@ -47,6 +47,7 @@ public class TableroView extends GridPane {
                     clicColum = (int)(mouseEvent.getX() / 80);
                     clicFila = (int)(mouseEvent.getY() / 60);
                     destapadoCasillas(clicFila, clicColum);
+                    control[clicColum][clicFila] = 1;
                 }
                 
             }); 
@@ -61,35 +62,35 @@ public class TableroView extends GridPane {
         if (numComprobacion == 0){
             try{
                 rectangulos[clicColum + 1][clicFila + 1].setVisible(false);
-                destapadoCasillas(clicColum + 1, clicColum + 1);
+                destapadoCasillas(clicColum + 1, clicFila + 1);
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum][clicFila + 1].setVisible(false);
-                destapadoCasillas(clicColum, clicColum + 1);
+                destapadoCasillas(clicColum, clicFila + 1);
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum + 1][clicFila].setVisible(false);
-                destapadoCasillas(clicColum + 1, clicColum);
+                destapadoCasillas(clicColum + 1, clicFila);
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum - 1][clicFila - 1].setVisible(false);
-                destapadoCasillas(clicColum - 1, clicColum - 1);
+                destapadoCasillas(clicColum - 1, clicFila - 1);
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum - 1][clicFila].setVisible(false);
-                destapadoCasillas(clicColum - 1, clicColum);
+                destapadoCasillas(clicColum - 1, clicFila);
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum][clicFila - 1].setVisible(false);
-                destapadoCasillas(clicColum, clicColum - 1);
+                destapadoCasillas(clicColum, clicFila - 1);
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum + 1][clicFila - 1].setVisible(false);
-                destapadoCasillas(clicColum + 1, clicColum - 1);
+                destapadoCasillas(clicColum + 1, clicFila - 1);
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum - 1][clicFila + 1].setVisible(false);
-                destapadoCasillas(clicColum - 1, clicColum + 1);
+                destapadoCasillas(clicColum - 1, clicFila + 1);
             }catch (Exception ex) {}
         }
     }
