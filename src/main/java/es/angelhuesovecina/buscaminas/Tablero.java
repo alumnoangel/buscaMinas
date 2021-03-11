@@ -2,11 +2,10 @@
 package es.angelhuesovecina.buscaminas;
 
 import java.util.Random;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class Tablero {
     int [][] minas;
+    int [][] control;
     int xMina;
     int yMina;
     int filas = 8;
@@ -23,9 +22,8 @@ public class Tablero {
                 yMina = getNumeroAleatorio(0,7);
                 System.out.println("x = " + xMina + "  y= " + yMina);
                 //Bucle para que las minas no se pisen
-            }while (minas[xMina][yMina] == 9); 
+            }while (minas[xMina][yMina] == 9);
                 minas[xMina][yMina] = 9;
-            //generacionDePistas();
         }
         actualizarNumeroMinasCercanas();
         mostrarPorConsola(); 
@@ -101,6 +99,14 @@ public class Tablero {
     
     public int getPosTablero(int posx, int posy) {          
         return minas[posx][posy];
+    }
+    
+    public void controlTablero(){
+       for (int yControl=0; yControl<filas; yControl++){
+          for (int xControl=0; xControl<columnas; xControl++){
+              control[xControl][yControl] = 0;
+          } 
+       }
     }
 }
 
