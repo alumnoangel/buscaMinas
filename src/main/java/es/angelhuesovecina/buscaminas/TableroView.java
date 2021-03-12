@@ -46,17 +46,17 @@ public class TableroView extends GridPane {
                 if(vivo == true){
                     clicColum = (int)(mouseEvent.getX() / 80);
                     clicFila = (int)(mouseEvent.getY() / 60);
-                    tablero.control[clicColum][clicFila] = 1;
-                    destapadoCasillas(clicFila, clicColum);    
+                    
+                    destapadoCasillas(clicColum, clicFila);    
                 } 
             });
     }
     
-    private void destapadoCasillas (int clicFila, int clicColum){
+    private void destapadoCasillas (int clicColum, int clicFila){
         numComprobacion = tablero.getPosTablero(clicColum, clicFila);
         rectangulos[clicColum][clicFila].setVisible(false);
-        
-        if (numComprobacion == 9){
+        tablero.control[clicColum][clicFila] = 1;
+        if (numComprobacion == 8){
             vivo = false;
         }
         if (numComprobacion == 0){
