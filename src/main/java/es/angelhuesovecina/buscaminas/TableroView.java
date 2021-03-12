@@ -46,54 +46,68 @@ public class TableroView extends GridPane {
                 if(vivo == true){
                     clicColum = (int)(mouseEvent.getX() / 80);
                     clicFila = (int)(mouseEvent.getY() / 60);
-                    destapadoCasillas(clicFila, clicColum);
-                    control[clicColum][clicFila] = 1;
-                }
-                
-            }); 
+                    tablero.control[clicColum][clicFila] = 1;
+                    destapadoCasillas(clicFila, clicColum);    
+                } 
+            });
     }
     
     private void destapadoCasillas (int clicFila, int clicColum){
         numComprobacion = tablero.getPosTablero(clicColum, clicFila);
         rectangulos[clicColum][clicFila].setVisible(false);
+        
         if (numComprobacion == 9){
             vivo = false;
         }
         if (numComprobacion == 0){
             try{
                 rectangulos[clicColum + 1][clicFila + 1].setVisible(false);
-                destapadoCasillas(clicColum + 1, clicFila + 1);
+                if (tablero.control[clicColum + 1][clicFila + 1] == 0){
+                    destapadoCasillas(clicColum + 1, clicFila + 1);
+                }
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum][clicFila + 1].setVisible(false);
-                destapadoCasillas(clicColum, clicFila + 1);
+                if (tablero.control[clicColum][clicFila + 1] == 0){
+                    destapadoCasillas(clicColum, clicFila + 1);
+                }
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum + 1][clicFila].setVisible(false);
-                destapadoCasillas(clicColum + 1, clicFila);
+                if (tablero.control[clicColum + 1][clicFila] == 0){
+                    destapadoCasillas(clicColum + 1, clicFila);
+                }
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum - 1][clicFila - 1].setVisible(false);
-                destapadoCasillas(clicColum - 1, clicFila - 1);
+                if (tablero.control[clicColum - 1][clicFila - 1] == 0){
+                    destapadoCasillas(clicColum - 1, clicFila - 1);
+                }
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum - 1][clicFila].setVisible(false);
-                destapadoCasillas(clicColum - 1, clicFila);
+                if (tablero.control[clicColum - 1][clicFila] == 0){
+                    destapadoCasillas(clicColum - 1, clicFila);
+                }
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum][clicFila - 1].setVisible(false);
-                destapadoCasillas(clicColum, clicFila - 1);
+                if (tablero.control[clicColum][clicFila - 1] == 0){
+                    destapadoCasillas(clicColum, clicFila - 1);
+                }
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum + 1][clicFila - 1].setVisible(false);
-                destapadoCasillas(clicColum + 1, clicFila - 1);
+                if (tablero.control[clicColum + 1][clicFila - 1] == 0){
+                    destapadoCasillas(clicColum + 1, clicFila - 1);
+                }
             }catch (Exception ex) {}
             try{
                 rectangulos[clicColum - 1][clicFila + 1].setVisible(false);
-                destapadoCasillas(clicColum - 1, clicFila + 1);
+                if (tablero.control[clicColum - 1][clicFila + 1] == 0){
+                    destapadoCasillas(clicColum - 1, clicFila + 1);
+                }
             }catch (Exception ex) {}
         }
     }
-    
-    
 }

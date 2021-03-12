@@ -13,7 +13,7 @@ public class Tablero {
     
     //Generacion de minas
     public void generarMinas (int minasGeneradas){
-        
+        control = new int [filas][columnas];
         minas = new int[filas][columnas];
         //Bucle para generar minas aleatorias
         for(int i=0; i<minasGeneradas; i++){
