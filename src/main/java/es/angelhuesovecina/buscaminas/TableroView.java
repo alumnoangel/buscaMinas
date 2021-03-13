@@ -2,6 +2,7 @@ package es.angelhuesovecina.buscaminas;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -43,13 +44,35 @@ public class TableroView extends GridPane {
     }
     private void controlRaton() {
             this.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                if(vivo == true){
-                    clicColum = (int)(mouseEvent.getX() / 80);
-                    clicFila = (int)(mouseEvent.getY() / 60);
-                    destapadoCasillas(clicColum, clicFila);    
-                } 
+                if(mouseEvent.getButton() == MouseButton.PRIMARY){
+                    if(vivo == true){
+                        clicColum = (int)(mouseEvent.getX() / 80);
+                        clicFila = (int)(mouseEvent.getY() / 60);
+                        destapadoCasillas(clicColum, clicFila);    
+                    }
+                }
+                if(mouseEvent.getButton() == MouseButton.SECONDARY){
+                   if (vivo == true){
+                       clicColum = (int)(mouseEvent.getX() / 80);
+                       clicFila = (int)(mouseEvent.getY() / 60);
+                       marcaCasilla(clicColum, clicFila);
+                   } 
+                }
             });
     }
+    
+    private void marcaCasilla (int clicColum, int clicFila){
+            if (tablero.control[clicColum][clicFila] == 0){
+                tablero.control[clicColum][clicFila] = 2;
+                rectangulos[clicColum][clicFila].setFill(Color.RED);
+                
+            }
+            else if (tablero.control[clicColum][clicFila] == 2){
+                tablero.control[clicColum][clicFila] = 0;
+                rectangulos[clicColum][clicFila].setFill(Color.CADETBLUE);
+            }
+    }
+    
     
     private void destapadoCasillas (int clicColum, int clicFila){
         numComprobacion = tablero.getPosTablero(clicColum, clicFila);
