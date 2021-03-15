@@ -62,74 +62,74 @@ public class TableroView extends GridPane {
     }
     
     private void marcaCasilla (int clicColum, int clicFila){
-            if (tablero.control[clicColum][clicFila] == 0){
-                tablero.control[clicColum][clicFila] = 2;
-                rectangulos[clicColum][clicFila].setFill(Color.RED);
-                
-            }
-            else if (tablero.control[clicColum][clicFila] == 2){
-                tablero.control[clicColum][clicFila] = 0;
-                rectangulos[clicColum][clicFila].setFill(Color.CADETBLUE);
-            }
+        if (tablero.control[clicColum][clicFila] == 0){
+            tablero.control[clicColum][clicFila] = 2;
+            rectangulos[clicColum][clicFila].setFill(Color.RED);  
+        }
+        else if (tablero.control[clicColum][clicFila] == 2){
+            tablero.control[clicColum][clicFila] = 0;
+            rectangulos[clicColum][clicFila].setFill(Color.CADETBLUE);
+        }
     }
     
-    
     private void destapadoCasillas (int clicColum, int clicFila){
-        numComprobacion = tablero.getPosTablero(clicColum, clicFila);
-        rectangulos[clicColum][clicFila].setVisible(false);
-        tablero.control[clicColum][clicFila] = 1;
-        if (numComprobacion == 9){
-            vivo = false;
-        }
-        if (numComprobacion == 0){
-            try{
-                rectangulos[clicColum + 1][clicFila + 1].setVisible(false);
-                if (tablero.control[clicColum + 1][clicFila + 1] == 0){
-                    destapadoCasillas(clicColum + 1, clicFila + 1);
+        if (tablero.control[clicColum][clicFila] == 0){
+            numComprobacion = tablero.getPosTablero(clicColum, clicFila);
+            rectangulos[clicColum][clicFila].setVisible(false);
+            tablero.control[clicColum][clicFila] = 1;
+            if (numComprobacion == 9){
+                vivo = false;
+            }
+                if (numComprobacion == 0){
+                    try{
+                        rectangulos[clicColum + 1][clicFila + 1].setVisible(false);
+                        if (tablero.control[clicColum + 1][clicFila + 1] == 0){
+                            destapadoCasillas(clicColum + 1, clicFila + 1);
+                        }
+                    }catch (Exception ex) {}
+                    try{
+                        rectangulos[clicColum][clicFila + 1].setVisible(false);
+                        if (tablero.control[clicColum][clicFila + 1] == 0){
+                            destapadoCasillas(clicColum, clicFila + 1);
+                        }
+                    }catch (Exception ex) {}
+                    try{
+                        rectangulos[clicColum + 1][clicFila].setVisible(false);
+                        if (tablero.control[clicColum + 1][clicFila] == 0){
+                            destapadoCasillas(clicColum + 1, clicFila);
+                        }
+                    }catch (Exception ex) {}
+                    try{
+                        rectangulos[clicColum - 1][clicFila - 1].setVisible(false);
+                        if (tablero.control[clicColum - 1][clicFila - 1] == 0){
+                            destapadoCasillas(clicColum - 1, clicFila - 1);
+                        }
+                    }catch (Exception ex) {}
+                    try{
+                        rectangulos[clicColum - 1][clicFila].setVisible(false);
+                        if (tablero.control[clicColum - 1][clicFila] == 0){
+                            destapadoCasillas(clicColum - 1, clicFila);
+                        }
+                    }catch (Exception ex) {}
+                    try{
+                        rectangulos[clicColum][clicFila - 1].setVisible(false);
+                        if (tablero.control[clicColum][clicFila - 1] == 0){
+                            destapadoCasillas(clicColum, clicFila - 1);
+                        }
+                    }catch (Exception ex) {}
+                    try{
+                        rectangulos[clicColum + 1][clicFila - 1].setVisible(false);
+                        if (tablero.control[clicColum + 1][clicFila - 1] == 0){
+                            destapadoCasillas(clicColum + 1, clicFila - 1);
+                        }
+                    }catch (Exception ex) {}
+                    try{
+                        rectangulos[clicColum - 1][clicFila + 1].setVisible(false);
+                        if (tablero.control[clicColum - 1][clicFila + 1] == 0){
+                            destapadoCasillas(clicColum - 1, clicFila + 1);
+                        }
+                    }catch (Exception ex) {}
                 }
-            }catch (Exception ex) {}
-            try{
-                rectangulos[clicColum][clicFila + 1].setVisible(false);
-                if (tablero.control[clicColum][clicFila + 1] == 0){
-                    destapadoCasillas(clicColum, clicFila + 1);
-                }
-            }catch (Exception ex) {}
-            try{
-                rectangulos[clicColum + 1][clicFila].setVisible(false);
-                if (tablero.control[clicColum + 1][clicFila] == 0){
-                    destapadoCasillas(clicColum + 1, clicFila);
-                }
-            }catch (Exception ex) {}
-            try{
-                rectangulos[clicColum - 1][clicFila - 1].setVisible(false);
-                if (tablero.control[clicColum - 1][clicFila - 1] == 0){
-                    destapadoCasillas(clicColum - 1, clicFila - 1);
-                }
-            }catch (Exception ex) {}
-            try{
-                rectangulos[clicColum - 1][clicFila].setVisible(false);
-                if (tablero.control[clicColum - 1][clicFila] == 0){
-                    destapadoCasillas(clicColum - 1, clicFila);
-                }
-            }catch (Exception ex) {}
-            try{
-                rectangulos[clicColum][clicFila - 1].setVisible(false);
-                if (tablero.control[clicColum][clicFila - 1] == 0){
-                    destapadoCasillas(clicColum, clicFila - 1);
-                }
-            }catch (Exception ex) {}
-            try{
-                rectangulos[clicColum + 1][clicFila - 1].setVisible(false);
-                if (tablero.control[clicColum + 1][clicFila - 1] == 0){
-                    destapadoCasillas(clicColum + 1, clicFila - 1);
-                }
-            }catch (Exception ex) {}
-            try{
-                rectangulos[clicColum - 1][clicFila + 1].setVisible(false);
-                if (tablero.control[clicColum - 1][clicFila + 1] == 0){
-                    destapadoCasillas(clicColum - 1, clicFila + 1);
-                }
-            }catch (Exception ex) {}
-        }
+        } 
     }
 }
