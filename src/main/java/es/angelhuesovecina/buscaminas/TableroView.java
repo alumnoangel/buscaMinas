@@ -130,6 +130,15 @@ public class TableroView extends GridPane {
                         }
                     }catch (Exception ex) {}
                 }
+            if (vivo == false){
+                    for(int y=0; y<tablero.filas; y++){
+                        for(int x=0; x<tablero.columnas; x++){
+                            if (numComprobacion == 9){
+                                rectangulos[tablero.xMina][tablero.yMina].setVisible(false);
+                            }
+                        }
+                    }
+            }
         } 
     }
 }
