@@ -14,9 +14,12 @@ public class TableroView extends GridPane {
     Rectangle rec = new Rectangle();
     Rectangle [][] rectangulos = new Rectangle[8][8];
     boolean vivo = true;
+    boolean ganado = false;
     int clicColum;
     int clicFila;
     int numComprobacion;
+    int casillaDestapada;
+    int numMinas = 10;
     
     public TableroView(Tablero tablero){
         this.tablero = tablero;
@@ -46,34 +49,39 @@ public class TableroView extends GridPane {
             this.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 if(mouseEvent.getButton() == MouseButton.PRIMARY){
                     if(vivo == true){
+                        
                         clicColum = (int)(mouseEvent.getX() / 80);
                         clicFila = (int)(mouseEvent.getY() / 60);
-                        destapadoCasillas(clicColum, clicFila);    
+                        destapadoCasillas(clicColum, clicFila);
+                        partidaGanada();
                     }
                 }
                 if(mouseEvent.getButton() == MouseButton.SECONDARY){
                    if (vivo == true){
                        clicColum = (int)(mouseEvent.getX() / 80);
                        clicFila = (int)(mouseEvent.getY() / 60);
-                       marcaCasilla(clicColum, clicFila);
+                       marcarCasilla(clicColum, clicFila);
                    } 
                 }
             });
     }
     
-    private void marcaCasilla (int clicColum, int clicFila){
-        if (tablero.control[clicColum][clicFila] == 0){
-            tablero.control[clicColum][clicFila] = 2;
-            rectangulos[clicColum][clicFila].setFill(Color.RED);  
-        }
-        else if (tablero.control[clicColum][clicFila] == 2){
-            tablero.control[clicColum][clicFila] = 0;
-            rectangulos[clicColum][clicFila].setFill(Color.CADETBLUE);
+    private void marcarCasilla (int clicColum, int clicFila){
+        if (ganado == false){
+            if (tablero.control[clicColum][clicFila] == 0){
+                tablero.control[clicColum][clicFila] = 2;
+                rectangulos[clicColum][clicFila].setFill(Color.RED);  
+            }
+            else if (tablero.control[clicColum][clicFila] == 2){
+                tablero.control[clicColum][clicFila] = 0;
+                rectangulos[clicColum][clicFila].setFill(Color.CADETBLUE);
+            }
         }
     }
     
     private void destapadoCasillas (int clicColum, int clicFila){
         if (tablero.control[clicColum][clicFila] == 0){
+            casillaDestapada ++;
             numComprobacion = tablero.getPosTablero(clicColum, clicFila);
             rectangulos[clicColum][clicFila].setVisible(false);
             tablero.control[clicColum][clicFila] = 1;
@@ -130,15 +138,26 @@ public class TableroView extends GridPane {
                         }
                     }catch (Exception ex) {}
                 }
-            if (vivo == false){
-                    for(int y=0; y<tablero.filas; y++){
-                        for(int x=0; x<tablero.columnas; x++){
-                            if (numComprobacion == 9){
-                                rectangulos[tablero.xMina][tablero.yMina].setVisible(false);
-                            }
-                        }
-                    }
-            }
+            destaparMinasMuerto();
         } 
+    }
+    
+    private void destaparMinasMuerto(){
+        if (vivo == false){
+            for(int y=0; y<tablero.filas; y++){
+                for(int x=0; x<tablero.columnas; x++){
+                    if (tablero.getPosTablero(x, y) == 9){
+                    rectangulos[x][y].setVisible(false);
+                    }
+                }
+            }
+        }
+    }
+    
+    private void partidaGanada(){
+        if (casillaDestapada >= (tablero.filas * tablero.columnas) - numMinas){
+            ganado = true;
+            System.out.println("Has GANADO");
+        }
     }
 }
