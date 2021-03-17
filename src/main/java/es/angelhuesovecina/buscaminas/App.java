@@ -24,8 +24,10 @@ public class App extends Application {
         TableroView tableroView = new TableroView(tablero);
         paneRoot.setCenter(tableroView);
         
-        BotonReinicio botonReinicio = new BotonReinicio();
+        BotonReinicio botonReinicio = new BotonReinicio(tablero, tableroView);
         paneRoot.setTop(botonReinicio);
+        
+        tableroView.botonReinicio = botonReinicio;
     }
 
     public static void main(String[] args) {

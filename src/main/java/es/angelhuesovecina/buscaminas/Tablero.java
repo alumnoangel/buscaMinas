@@ -10,6 +10,7 @@ public class Tablero {
     int yMina;
     int filas = 8;
     int columnas = 8;
+    int minasGeneradas;
     
     //Generacion de minas
     public void generarMinas (int minasGeneradas){

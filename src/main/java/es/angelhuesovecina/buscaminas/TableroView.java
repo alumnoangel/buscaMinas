@@ -11,6 +11,7 @@ import javafx.scene.shape.Rectangle;
 public class TableroView extends GridPane {
     
     Tablero tablero;
+    public BotonReinicio botonReinicio;
     Rectangle rec = new Rectangle();
     Rectangle [][] rectangulos = new Rectangle[8][8];
     boolean vivo = true;
@@ -30,28 +31,27 @@ public class TableroView extends GridPane {
                 String strNum = String.valueOf(num);
                 Label numTablero = new Label(strNum);
                 numTablero.setPrefWidth(80);
-                numTablero.setPrefHeight(60);
+                numTablero.setPrefHeight(54);
                 numTablero.setAlignment(Pos.CENTER);
                 this.add(numTablero, x, y);
                 rec = new Rectangle();
                 rectangulos[x][y] = rec;
                 rec.setWidth(80);
-                rec.setHeight(60);
+                rec.setHeight(54);
                 rec.setFill(Color.CADETBLUE);
                 this.add(rec, x, y);
             }
         }
-        this.setMaxWidth(80*9);
-        this.setMaxHeight(60*tablero.columnas);
+        this.setMaxWidth(80*tablero.filas);
+        this.setMaxHeight(54*tablero.columnas);
         this.controlRaton();
     }
     private void controlRaton() {
             this.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 if(mouseEvent.getButton() == MouseButton.PRIMARY){
                     if(vivo == true){
-                        
                         clicColum = (int)(mouseEvent.getX() / 80);
-                        clicFila = (int)(mouseEvent.getY() / 60);
+                        clicFila = (int)(mouseEvent.getY() / 54);
                         destapadoCasillas(clicColum, clicFila);
                         partidaGanada();
                     }
@@ -59,7 +59,7 @@ public class TableroView extends GridPane {
                 if(mouseEvent.getButton() == MouseButton.SECONDARY){
                    if (vivo == true){
                        clicColum = (int)(mouseEvent.getX() / 80);
-                       clicFila = (int)(mouseEvent.getY() / 60);
+                       clicFila = (int)(mouseEvent.getY() / 54);
                        marcarCasilla(clicColum, clicFila);
                    } 
                 }
@@ -154,9 +154,10 @@ public class TableroView extends GridPane {
         }
     }
     
-    private void partidaGanada(){
+    public void partidaGanada(){
         if (casillaDestapada >= (tablero.filas * tablero.columnas) - numMinas){
             ganado = true;
+            botonReinicio.boton.setFill(Color.GREEN);
             System.out.println("Has GANADO");
         }
     }
