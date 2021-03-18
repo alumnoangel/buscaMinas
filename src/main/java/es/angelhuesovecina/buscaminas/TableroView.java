@@ -143,7 +143,11 @@ public class TableroView extends GridPane {
     }
     
     public void reinicioVista(){
-        this.setStyle("-fx-grid-lines-visible: true");
+        this.getChildren().clear();
+        casillaDestapada = 0;
+        numComprobacion = 0;
+        vivo = true;
+        this.setStyle("-fx-grid-lines-visible: false");
         for(int y=0; y<tablero.filas; y++){
             for(int x=0; x<tablero.filas; x++){
                 int num = tablero.getPosTablero(x, y);
@@ -159,8 +163,10 @@ public class TableroView extends GridPane {
                 rec.setHeight(54);
                 rec.setFill(Color.CADETBLUE);
                 this.add(rec, x, y);
+               
             }
         }
+        this.setStyle("-fx-grid-lines-visible: true");
         this.setMaxWidth(80*tablero.filas);
         this.setMaxHeight(54*tablero.columnas);
         this.controlRaton();
