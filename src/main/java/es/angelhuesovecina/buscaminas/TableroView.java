@@ -24,27 +24,7 @@ public class TableroView extends GridPane {
     
     public TableroView(Tablero tablero){
         this.tablero = tablero;
-        this.setStyle("-fx-grid-lines-visible: true");
-        for(int y=0; y<tablero.filas; y++){
-            for(int x=0; x<tablero.filas; x++){
-                int num = tablero.getPosTablero(x, y);
-                String strNum = String.valueOf(num);
-                Label numTablero = new Label(strNum);
-                numTablero.setPrefWidth(80);
-                numTablero.setPrefHeight(54);
-                numTablero.setAlignment(Pos.CENTER);
-                this.add(numTablero, x, y);
-                rec = new Rectangle();
-                rectangulos[x][y] = rec;
-                rec.setWidth(80);
-                rec.setHeight(54);
-                rec.setFill(Color.CADETBLUE);
-                this.add(rec, x, y);
-            }
-        }
-        this.setMaxWidth(80*tablero.filas);
-        this.setMaxHeight(54*tablero.columnas);
-        this.controlRaton();
+        this.reinicioVista();
     }
     private void controlRaton() {
             this.setOnMouseClicked((MouseEvent mouseEvent) -> {
@@ -160,5 +140,29 @@ public class TableroView extends GridPane {
             botonReinicio.boton.setFill(Color.GREEN);
             System.out.println("Has GANADO");
         }
+    }
+    
+    public void reinicioVista(){
+        this.setStyle("-fx-grid-lines-visible: true");
+        for(int y=0; y<tablero.filas; y++){
+            for(int x=0; x<tablero.filas; x++){
+                int num = tablero.getPosTablero(x, y);
+                String strNum = String.valueOf(num);
+                Label numTablero = new Label(strNum);
+                numTablero.setPrefWidth(80);
+                numTablero.setPrefHeight(54);
+                numTablero.setAlignment(Pos.CENTER);
+                this.add(numTablero, x, y);
+                rec = new Rectangle();
+                rectangulos[x][y] = rec;
+                rec.setWidth(80);
+                rec.setHeight(54);
+                rec.setFill(Color.CADETBLUE);
+                this.add(rec, x, y);
+            }
+        }
+        this.setMaxWidth(80*tablero.filas);
+        this.setMaxHeight(54*tablero.columnas);
+        this.controlRaton();
     }
 }

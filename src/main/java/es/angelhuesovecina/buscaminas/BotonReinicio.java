@@ -7,13 +7,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+
 public class BotonReinicio extends HBox {
     Circle boton;
     Tablero tablero;
-    TableroView tableroView;
-    
     public BotonReinicio(Tablero tablero, TableroView tableroView){
-        this.tableroView = tableroView;
         this.tablero = tablero;
         this.setStyle("-fx-border-color: black");
         this.setAlignment(Pos.CENTER);
@@ -23,6 +21,8 @@ public class BotonReinicio extends HBox {
                 if (mouseEvent.getButton() == MouseButton.PRIMARY){
                     boton.setFill(Color.BISQUE);
                     tablero.generarMinas(10);
+                    tableroView
+                    
                 }
                     });
         boton.setFill(Color.RED);
@@ -32,5 +32,4 @@ public class BotonReinicio extends HBox {
         
         
     }
-    
 }
