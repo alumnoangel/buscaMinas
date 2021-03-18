@@ -28,8 +28,6 @@ public class BotonReinicio extends HBox {
         boton.setFill(Color.RED);
         boton.setRadius(20);
         boton.setStroke(Color.BLACK);
-        this.getChildren().add(boton);
-        
-        
+        this.getChildren().add(boton);  
     }
 }

@@ -144,6 +144,7 @@ public class TableroView extends GridPane {
     
     public void reinicioVista(){
         this.getChildren().clear();
+        ganado = false;
         casillaDestapada = 0;
         numComprobacion = 0;
         vivo = true;
