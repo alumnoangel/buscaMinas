@@ -110,7 +110,3 @@ public class Tablero {
        }
     }
 }
-
-    
-
-

@@ -21,6 +21,8 @@ public class TableroView extends GridPane {
     int numComprobacion;
     int casillaDestapada;
     int numMinas = 10;
+    int ancho = 80;
+    int largo = 54;
     
     public TableroView(Tablero tablero){
         this.tablero = tablero;
@@ -30,16 +32,16 @@ public class TableroView extends GridPane {
             this.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 if(mouseEvent.getButton() == MouseButton.PRIMARY){
                     if(vivo == true){
-                        clicColum = (int)(mouseEvent.getX() / 80);
-                        clicFila = (int)(mouseEvent.getY() / 54);
+                        clicColum = (int)(mouseEvent.getX() / ancho);
+                        clicFila = (int)(mouseEvent.getY() / largo);
                         destapadoCasillas(clicColum, clicFila);
                         partidaGanada();
                     }
                 }
                 if(mouseEvent.getButton() == MouseButton.SECONDARY){
                    if (vivo == true){
-                       clicColum = (int)(mouseEvent.getX() / 80);
-                       clicFila = (int)(mouseEvent.getY() / 54);
+                       clicColum = (int)(mouseEvent.getX() / ancho);
+                       clicFila = (int)(mouseEvent.getY() / largo);
                        marcarCasilla(clicColum, clicFila);
                    } 
                 }
@@ -154,22 +156,21 @@ public class TableroView extends GridPane {
                 int num = tablero.getPosTablero(x, y);
                 String strNum = String.valueOf(num);
                 Label numTablero = new Label(strNum);
-                numTablero.setPrefWidth(80);
-                numTablero.setPrefHeight(54);
+                numTablero.setPrefWidth(ancho);
+                numTablero.setPrefHeight(largo);
                 numTablero.setAlignment(Pos.CENTER);
                 this.add(numTablero, x, y);
                 rec = new Rectangle();
                 rectangulos[x][y] = rec;
-                rec.setWidth(80);
-                rec.setHeight(54);
+                rec.setWidth(ancho);
+                rec.setHeight(largo);
                 rec.setFill(Color.CADETBLUE);
-                this.add(rec, x, y);
-               
+                this.add(rec, x, y);  
             }
         }
         this.setStyle("-fx-grid-lines-visible: true");
-        this.setMaxWidth(80*tablero.filas);
-        this.setMaxHeight(54*tablero.columnas);
+        this.setMaxWidth(ancho*tablero.filas);
+        this.setMaxHeight(largo*tablero.columnas);
         this.controlRaton();
     }
 }

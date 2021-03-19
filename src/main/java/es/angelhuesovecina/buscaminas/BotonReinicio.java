@@ -19,10 +19,11 @@ public class BotonReinicio extends HBox {
         boton = new Circle();
         boton.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 if (mouseEvent.getButton() == MouseButton.PRIMARY){
-                    boton.setFill(Color.BISQUE);
+                    if (tableroView.ganado == true){
+                        boton.setFill(Color.RED);
+                    }
                     tablero.generarMinas(10);
-                    tableroView.reinicioVista();
-                    
+                    tableroView.reinicioVista();   
                 }
                     });
         boton.setFill(Color.RED);
