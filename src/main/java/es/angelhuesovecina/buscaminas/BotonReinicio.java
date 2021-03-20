@@ -7,10 +7,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-
+/**
+ * Creacion de la clase BotonReinicio
+ * @author Angel
+ */
 public class BotonReinicio extends HBox {
     Circle boton;
     Tablero tablero;
+    /**
+     * Metodo del boton de reinicio
+     * @param tablero
+     * @param tableroView 
+     */
     public BotonReinicio(Tablero tablero, TableroView tableroView){
         this.tablero = tablero;
         this.setStyle("-fx-border-color: black");
