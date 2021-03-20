@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class TableroView extends GridPane {
-    
     Tablero tablero;
     public BotonReinicio botonReinicio;
     Rectangle rec = new Rectangle();
@@ -126,6 +125,7 @@ public class TableroView extends GridPane {
     
     private void destaparMinasMuerto(){
         if (vivo == false){
+            botonReinicio.boton.setFill(Color.RED);
             for(int y=0; y<tablero.filas; y++){
                 for(int x=0; x<tablero.columnas; x++){
                     if (tablero.getPosTablero(x, y) == 9){
